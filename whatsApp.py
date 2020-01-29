@@ -112,7 +112,16 @@ data['thours'].value_counts().plot(kind='bar',
 
                              
                                
-                               
+#Hour when individuals like to chat
+ts = data \
+    .groupby(['thours','Name'])\
+    .size()\
+    .reset_index(name="Count")
+
+ht = ts.pivot("Name", "thours", "Count")
+plt.figure(figsize = (18,7))
+ax = sns.heatmap(ht,annot=True)     
+                              
                                
                             
                                
